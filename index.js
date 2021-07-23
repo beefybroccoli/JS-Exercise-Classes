@@ -262,7 +262,7 @@ class Student extends Instructor {
    * @returns `student.name has submitted a PR for {subject}`
    */
    PRAssignment(subject){
-    return `student.name has submitted a PR for ${subject}`;
+    return `${this.name} has submitted a PR for ${subject}`;
 
     // ✕ [9] can do a PRAssignment correctly
    }
@@ -314,7 +314,7 @@ class ProjectManager extends Instructor {
      */
     standUp(channel){
       // ✕ [8] can standUp correctly (6 ms)
-      returns `${this.name} announces to ${channel}, @channel standy times!`;
+      return `${this.name} announces to ${channel}, @channel standy times!`;
     }
    
     /**
