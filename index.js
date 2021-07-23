@@ -41,6 +41,10 @@ class Airplane {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
+/**
+ * @param name
+ * @param age
+ */
 class Person {
   constructor(name, age){
     this.name = name;
@@ -82,8 +86,8 @@ class Car {
     - All instances built with Car:
         + should initialize with a `tank` at 0
         + should initialize with an `odometer` at 0
-   * @param {*} model 
-   * @param {*} milesPerGallon 
+   * @param {*} model
+   * @param {*} milesPerGallon
    */
   constructor(model, milesPerGallon){
     this.tank = 0;
@@ -107,12 +111,15 @@ class Car {
     - A car which runs out of `fuel` while driving can't drive any more distance:
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
    * @param {*} distance 
-   * @returns 
+   * @returns "I ran out of fuel at {odometer} miles!"
    */
   drive(distance){
     this.odometer += distance;
     this.tank -= distance/this.milesPerGallon;
     return `I ran out of fuel at ${this.odometer + this.tank * this.milesPerGallon} miles!`;
+
+    // ✕ [9] drive method when NOT enough fuel increases miles by drivable miles (1 ms)
+    // ✕ [10] drive method when NOT enough fuel empties the tank (1 ms)
   }
   
 }
@@ -169,7 +176,7 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian{
   /**
    *    constructor takes a single argument - an object with the following keys:
         + All the keys used to initialize instances of Lambdasian.
@@ -189,17 +196,20 @@ class Instructor {
   /**
    * `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
    * @param {*} subject 
+   * @returns subject
    */
   demo (subject){
-
+    return `Today we are learning about ${subject}`;
   }
 
   /**
    * `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}
-   * @param {*} student 
+   * @param {*} student
+   * @param subject
+   * @returns  '{student.name} receives a perfect score on {subject}
    */
-  grade(student){
-    
+  grade(student, subject){
+    return `'${student.name} receives a perfect score on ${subject}`;
   }
 
 }
@@ -218,8 +228,53 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-   
+class Student extends Instructor {
+
+  /**
+   *- Its constructor takes a single argument -  an object with the following keys:
+        + All the keys used to initialize instances of Lambdasian.
+        + `previousBackground` i.e. what the Student used to do before Lambda School
+        + `className` i.e. CS132
+        + `favSubjects`. i.e. an array of the student's favorite subjects ['HTML', 'CSS', 'JS']
+    - The constructor calls the parent constructor passing to it what it needs.
+    - The constructor should also initialize `previousBackground`, `className` and `favSubjects` properties on the instance.
+    * @param object
+   */
+  constructor(object){
+    super(object)
+    this.previousBackground = object.previousBackground;
+    this.className = object.className;
+    this.favSubjects = [...object.favSubjects]
+  }
+
+  /**
+   *    + `listSubjects` a method that returns all of the student's favSubjects in a single string: `Loving HTML, CSS, JS!`.
+   * @returns  `Loving HTML, CSS, JS!`.
+   */
+   listSubjects(){
+     return `Loving ${this.favSubjects.join(", ")}`;
+   }
+
+
+  /**
+   * + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
+   * @param subject
+   * @returns `student.name has submitted a PR for {subject}`
+   */
+   PRAssignment(subject){
+    return `student.name has submitted a PR for ${subject}`;
+
+    // ✕ [9] can do a PRAssignment correctly
+   }
+
+  /**
+   * + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
+   * @param subject
+   * @returns `student.name has begun sprint challenge on {subject}`
+   */
+   sprintChallenge(subject){
+     return `${this.name} has begun sprint challenge on ${subject}`;
+   }
 }
 
 /*
@@ -235,8 +290,42 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Instructor {
+
+  /**
+   *  - Its constructor takes a single argument - an object with the following keys:
+        + All the keys used to initialize instances of Instructor.
+        + `gradClassName`: i.e. CS1
+        + `favInstructor`: i.e. Sean
+    - Its constructor calls the parent constructor passing to it what it needs.
+    - The constructor should also initialize `gradClassName` and `favInstructor` properties on the instance.
+   * @param Object
+   */
+    constructor(object){
+      super(object);
+      this.gradClassName = object.gradClassName;
+      this.favInstructor = object.favInstructor;
+    }
+
+    /**
+     * + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
+     * @param channel
+     * @returns `{name} announces to {channel}, @channel standy times!`
+     */
+    standUp(channel){
+      // ✕ [8] can standUp correctly (6 ms)
+      returns `${this.name} announces to ${channel}, @channel standy times!`;
+    }
    
+    /**
+     * + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
+     * @param {*} student
+     * @param subject
+     * @returns `{name} debugs {student.name}'s code on {subject}`
+     */
+     debugsCode(student, subject) {
+       return `${this.name} debugs ${student.name}'s code on ${subject}`
+     }
 }
 /*
   STRETCH PROBLEM (no tests!)
