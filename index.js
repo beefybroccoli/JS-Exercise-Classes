@@ -1,3 +1,4 @@
+"use strict"
 
 /*
   EXAMPLE TASK:
@@ -147,9 +148,12 @@ class Car {
 
       return `I ran out of fuel at ${this.odometer} miles!`;
     }//end if
+
     //sufficient gas case
     else{
+      //update odometer
       this.odometer += distance;
+      // update tank
       this.tank -= distance/this.milesPerGallon;
     }//end else
 
