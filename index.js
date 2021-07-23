@@ -136,16 +136,16 @@ class Car {
    * @returns "I ran out of fuel at {odometer} miles!"
    */
   drive(distance){
-
+    const temp_drivableMiles = this.milesPerGallon * this.tank;
     //run out of gas case
-    if(distance > this.milesPerGallon * this.tank) {
+    if(distance > temp_drivableMiles) {
 
       // odometer = odometer + drivable miles
-      this.odometer += this.tank * this.milesPerGallon;
+      this.odometer += temp_drivableMiles;
       // empty tank
       this.tank = 0;
 
-      returns `I ran out of fuel at ${this.odometer + this.tank * this.milesPerGallon} miles!`;
+      returns `I ran out of fuel at ${this.odometer + temp_drivableMiles} miles!`;
     }//end if
     //sufficient gas case
     else{
