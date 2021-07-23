@@ -114,12 +114,23 @@ class Car {
    * @returns "I ran out of fuel at {odometer} miles!"
    */
   drive(distance){
-    this.odometer += distance;
-    this.tank -= distance/this.milesPerGallon;
-    return `I ran out of fuel at ${this.odometer + this.tank * this.milesPerGallon} miles!`;
+    //run out of gas case
+    if(distance > this.milesPerGallon * this.tank) {
 
-    // ✕ [9] drive method when NOT enough fuel increases miles by drivable miles (1 ms)
-    // ✕ [10] drive method when NOT enough fuel empties the tank (1 ms)
+      // [9] drive method when NOT enough fuel increases miles by drivable miles
+      this.odometer = this.tank * this.milesPerGallon;
+      this.tank = 0;
+
+      // ✕ [10] drive method when NOT enough fuel empties the tank (1 ms)
+
+      return `I ran out of fuel at ${this.odometer + this.tank * this.milesPerGallon} miles!`;
+    } 
+    //sufficient gas case
+    else{
+      this.odometer += distance;
+      this.tank -= distance/this.milesPerGallon;
+      
+    }
   }
   
 }
