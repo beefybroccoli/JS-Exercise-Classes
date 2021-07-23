@@ -136,7 +136,7 @@ class Car {
    * @returns "I ran out of fuel at {odometer} miles!"
    */
   drive(distance){
-    
+
     //run out of gas case
     if(distance > this.milesPerGallon * this.tank) {
 
@@ -146,12 +146,12 @@ class Car {
       this.tank = 0;
 
       returns `I ran out of fuel at ${this.odometer + this.tank * this.milesPerGallon} miles!`;
-    } 
+    }//end if
     //sufficient gas case
     else{
       this.odometer += distance;
       this.tank -= distance/this.milesPerGallon;
-    }
+    }//end else
 
   }//drive method
   
