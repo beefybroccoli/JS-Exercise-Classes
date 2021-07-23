@@ -145,7 +145,7 @@ class Car {
       // empty tank
       this.tank = 0;
 
-      returns `I ran out of fuel at ${this.odometer + temp_drivableMiles} miles!`;
+      return `I ran out of fuel at ${this.odometer} miles!`;
     }//end if
     //sufficient gas case
     else{
